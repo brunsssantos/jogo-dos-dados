@@ -27,6 +27,29 @@ namespace jogoDeDados.ConsoleApp
 
                     posicaoUsuario += resultado;
 
+                    // Evento de rodada extra
+                    if (resultado == 6)
+                    {
+                        Console.WriteLine("Você tirou 6! Ganhou uma rodada extra!");
+                        resultado = LancarDado();
+                        ExibirResultadoSorteio(resultado);
+                        posicaoUsuario += resultado;
+                    }
+
+                    //Evendo de avanço extra
+                    if (posicaoUsuario == 5 || posicaoUsuario == 10 || posicaoUsuario == 15)
+                    {
+                        Console.WriteLine("Parabéns! Você caiu em uma posição de avanço extra e avança +3 casas!");
+                        posicaoUsuario += 3;
+                    }
+
+                    //Evento de recuo
+                    if (posicaoUsuario == 7 || posicaoUsuario == 13 || posicaoUsuario == 20)
+                    {
+                        Console.WriteLine("Que pena! Você caiu em uma posição de recuo e volta -2 casas!");
+                        posicaoUsuario -= 2;
+                    }
+
                     if (posicaoUsuario >= limiteLinhaChegada)
                     {
                         Console.WriteLine("Parabéns, você alcançou a linha de chegada!");
@@ -50,6 +73,29 @@ namespace jogoDeDados.ConsoleApp
                     ExibirResultadoSorteio(resultadoComputador);
 
                     posicaoComputador += resultadoComputador;
+
+                    // Evento de rodada extra
+                    if (resultado == 6)
+                    {
+                        Console.WriteLine("O computador tirou 6 e ganhou uma rodada extra!");
+                        resultadoComputador = LancarDado();
+                        ExibirResultadoSorteio(resultadoComputador);
+                        posicaoComputador += resultadoComputador;
+                    }
+
+                    //Evendo de avanço extra
+                    if (posicaoComputador == 5 || posicaoComputador == 10 || posicaoComputador == 15)
+                    {
+                        Console.WriteLine("O computador caiu em uma posição de avanço extra e avança +3 casas!");
+                        posicaoComputador += 3;
+                    }
+
+                    //Evento de recuo
+                    if (posicaoComputador == 7 || posicaoComputador == 13 || posicaoComputador == 20)
+                    {
+                        Console.WriteLine("O computador caiu em uma posição de recuo e volta -2 casas!");
+                        posicaoComputador -= 2;
+                    }
 
                     if (posicaoComputador >= limiteLinhaChegada)
                     {
@@ -117,7 +163,6 @@ namespace jogoDeDados.ConsoleApp
             Console.WriteLine("-----------------------------------------");
             Console.WriteLine("Deseja continuar? (S/N) ");
             string opcaoContinuar = Console.ReadLine()!.ToUpper();
-
             return opcaoContinuar;
         }
     }
